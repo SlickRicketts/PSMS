@@ -1,0 +1,37 @@
+﻿@page
+@model _2024PSMS.Pages.ProjectTypes.ModifyProjectTypesModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Modify Projects Type</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+<br />
+
+<form method="post">
+
+    <input asp-for="ProjectType.ProjectTypeID" type="hidden" />
+
+    <table>
+        <tr>
+            <td><label asp-for="ProjectType.ProjectType1"></label></td>
+            <td><input asp-for="ProjectType.ProjectType1" /></td>
+            <td><span asp-validation-for="ProjectType.ProjectType1"></span></td>
+        <tr>
+            <td></td>
+            <td>
+                <input class="button" asp-page-handler="Modify" type="submit" value="Modify" />
+                <a class="button-delete" asp-page="CancelProjectTypes"><span>Cancel</span></a>
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

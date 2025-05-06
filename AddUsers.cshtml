@@ -1,0 +1,75 @@
+﻿@page
+@model _2024PSMS.Pages.Users.AddUsersModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Add User</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+
+<form method="post">
+
+    <table>
+
+        <tr>
+            <td>
+                <label asp-for="User.FirstName"></label>               
+            </td>
+            <td><input asp-for="User.FirstName" /></td>
+            <td><span asp-validation-for="User.FirstName"></span></td>
+            
+        </tr>
+
+        <tr>
+            <td><label asp-for="User.MiddleInitial"></label></td>
+            <td><input asp-for="User.MiddleInitial" /></td>               
+        </tr>
+        <tr>
+            <td><label asp-for="User.LastName"></label></td>
+            <td><input asp-for="User.LastName" /></td>
+            <td><span asp-validation-for="User.LastName"></span></td>
+        </tr>
+
+        <tr>
+            <td><label asp-for="User.EmailAddress"></label></td>
+            <td><input asp-for="User.EmailAddress" /></td>
+            <td><span asp-validation-for="User.EmailAddress"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="User.PhoneNumber"></label></td>
+            <td><input asp-for="User.PhoneNumber" /></td>
+            <td><span asp-validation-for="User.PhoneNumber"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="User.Status"></label></td>
+            <td>
+                <select asp-for="User.Status">
+                    <option value="">- Select Status -</option>
+                    <option value="A">Administrator</option>
+                    <option value="I">Instructor</option>
+                    <option value="S">Student</option>
+                </select>
+                <td><span asp-validation-for="User.Status"></span></td>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input class="button" asp-page-handler="Add" type="submit" value="Add" />
+                <a class="button-delete" asp-page="CancelUsers"><span>Cancel</span></a>
+            </td>
+
+        </tr>
+
+    </table>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

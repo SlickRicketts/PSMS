@@ -1,0 +1,54 @@
+﻿@page
+@model _2024PSMS.Pages.Projects.ViewProjectsModel
+@{
+}
+
+<h1>View Projects</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th><label>Last Name</label></th>
+            <th><label>First Name</label></th>
+            <th><label>Project Title</label></th>
+            <th><label>Project Type</label></th>            
+            <th><label>Start Date</label></th>
+            <th><label>End Date</label></th>
+            <th><label>Status</label></th>        
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ResultIList)
+        {
+            <tr>
+                <td><label>@item.LastName</label></td>
+                <td><label>@item.FirstName</label></td>
+                <td><label class="td" title="@item.Description">@item.ProjectTitle</label></td>
+                <td><label>@item.ProjectType</label></td>
+                <td><label>@item.StartDate?.ToShortDateString()</label></td>
+                <td><label>@item.EndDate?.ToShortDateString()</label></td>
+                <td>
+                    @{
+                        if (item.Status == "O")
+                        {
+                            <label>Open</label>
+                        }
+                        else if (item.Status == "G")
+                        {
+                            <label>On-Going</label>
+                        }
+                        else
+                        {
+                            <label>Closed</label>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

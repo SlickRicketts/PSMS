@@ -1,0 +1,78 @@
+﻿@page
+@model _2024PSMS.Pages.Projects.AddProjectsModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Add Project</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+
+<form method="post">
+
+    <table>
+        <tr>
+            <td><label asp-for="Project.Title"></label></td>
+            <td><input asp-for="Project.Title" /></td>
+            <td><span asp-validation-for="Project.Title"/></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Project.ProjectType"></label></td>
+            <td><select asp-for="Project.ProjectTypeID" asp-items="@Model.ProjectTypeSelectList"><option value="">- Select Project Type -</option></select></td>
+            <td><span asp-validation-for="Project.ProjectTypeID"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Project.Description"></label></td>
+            <td><textarea asp-for="Project.Description"></textarea></td>
+            <td><span asp-validation-for="Project.Description"/></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Project.StartDate"></label></td>
+            <td><input asp-for="Project.StartDate" type="date"/></td>
+            <td><span asp-validation-for="Project.StartDate"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Project.EndDate"></label></td>
+            <td><input asp-for="Project.EndDate" type="date"/></td>
+            <td><span asp-validation-for="Project.EndDate"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Project.Status"></label></td>
+            <td>
+                <select asp-for="Project.Status">
+                    <option value="">- Select Status -</option>
+                    <option value="O">Open</option>
+                    <option value="G">On-Going</option>
+                    <option value="C">Closed</option>
+                </select>
+            </td>
+            <td><span asp-validation-for="Project.Status"></span></td>
+        <tr>
+            @switch (HttpContext.Session.GetString("Status"))
+            {
+                        case "A":
+                            <td><label asp-for="Project.MentorID"></label></td>
+                            <td><select asp-for="Project.MentorID" asp-items="@Model.MentorSelectList">
+                                    <option value="">- Select Mentor -</option></select>
+            </td>
+                            <td><span asp-validation-for="Project.MentorID"></span></td>
+            break;
+            }
+            
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input class="button" asp-page-handler="Add" type="submit" value="Add" />
+                <a class="button-delete" asp-page="CancelProjects"><span>Cancel</span></a>
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

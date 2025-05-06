@@ -1,0 +1,30 @@
+﻿@page
+@model SendNotificationModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Send Notification</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+
+<form method="post">
+
+    <table>      
+        <tr>
+            <td><label asp-for="Project.ProjectID"></label></td>
+            <td>
+                <select asp-for="Project.ProjectID" asp-items="@Model.ProjectSelectList">
+                    <option value="">- Select Project -</option>
+                </select>
+            </td>
+        </tr>       
+        <tr>
+            <td><input class="button" asp-page-handler="SendEmail" type="submit" value="Send Email" /></td>
+        </tr>
+    </table>
+
+
+
+</form>

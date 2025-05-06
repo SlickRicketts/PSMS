@@ -1,0 +1,77 @@
+﻿@page
+@model _2024PSMS.Pages.Projects.MaintainProjectsModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Maintain Projects</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <td><a class="button-add" asp-page="AddProjects"><span>Add</span></a></td>
+            <th><label>Last Name</label></th>
+            <th><label>First Name</label></th>
+            <th><label>Project Title</label></th>
+            <th><label>Project Type</label></th>
+            <th><label>Start Date</label></th>
+            <th><label>End Date</label></th>           
+            <th><label>Status</label></th>
+            <th>
+            @switch (HttpContext.Session.GetString("Status"))
+            {
+                case "A":
+                    <th><label>Mentor</label></th>                   
+                break;
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ResultIList)
+        {
+            <tr>
+                <td>
+                    <a class="button" asp-page="ModifyProjects" asp-route-intProjectID="@item.ProjectID"><span>Modify</span></a>
+                    <a class="button-delete" asp-page="DeleteProjects" asp-route-intProjectID="@item.ProjectID" onclick="return confirm('Are you sure you want to delete this Project? Click OK to delete it. Click Cancel to keep it.')"><span>Delete</span></a>
+                </td>
+          
+                <td><label>@item.LastName</label></td>
+                <td><label>@item.FirstName</label></td>
+                <td><label class="td" title="@item.Description">@item.ProjectTitle</label></td>
+                <td><label>@item.ProjectType</label></td>
+                <td><label>@item.StartDate?.ToShortDateString()</label></td>
+                <td><label>@item.EndDate?.ToShortDateString()</label></td>
+                <td>
+                    @{
+                        if (item.Status == "O")
+                        {
+                            <label>Open</label>
+                        }
+                        else if (item.Status == "G")
+                        {
+                            <label>On-Going</label>
+                        }
+                        else
+                        {
+                            <label>Closed</label>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (HttpContext.Session.GetString("Status") == "A")
+                    {
+                    <td>
+                            @if (item.MentorID != null)
+                            {
+                            <label>@item.MentorName</label>
+                            }
+                    </td>
+                    }                              
+            </tr>
+        }
+    </tbody>
+</table>
