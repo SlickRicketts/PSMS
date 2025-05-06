@@ -1,0 +1,40 @@
+﻿@page
+@model _2024PSMS.Pages.ProjectFiles.AddProjectFilesModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Add Project Files</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+
+<form method="post" enctype="multipart/form-data">
+
+    <table>
+        <tr>
+            <td><label asp-for="ProjectFile.ProjectID"></label></td>
+            <td><select asp-for="ProjectFile.ProjectID" asp-items="@Model.ProjectSelectList"><option value="">- Select Project -</option></select></td>
+            <td><span asp-validation-for="Project.ProjectID" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="ProjectFile.ProjectFile1"></label></td>
+            <td><input asp-for="ProjectFile1" type="file" /></td>
+            <td><span asp-validation-for="ProjectFile.ProjectFile1"></span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input class="button" asp-page-handler="Add" type="submit" value="Add" />
+                <a class="button-delete" asp-page="CancelProjectFiles"><span>Cancel</span></a>
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

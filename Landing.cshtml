@@ -1,0 +1,37 @@
+﻿@page "/"
+@model LandingModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Welcome!</h1>
+
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div>
+                Welcome to the Project Submission Management System! 
+                <br />
+
+                If you are a student or an instructor at Franklin College you may hit the "Log In" button bellow to access the Project 
+                Submission Management System.
+                <br />
+
+                If you are NOT affiliated with Franklin College and would like to collaborate with a project please hit "View Projects" above.
+                <br />
+
+                Thanks!       
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div>
+                <a class="button" asp-page="Initialize"><span>Log In</span></a>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+    

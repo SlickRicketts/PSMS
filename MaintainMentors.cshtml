@@ -1,0 +1,41 @@
+﻿@page
+@model _2024PSMS.Pages.Mentors.MaintainMentorsModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Maintain Mentors</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <td><a class="button-add" asp-page="AddMentors"><span>Add</span></a></td>
+            <th><label>Last Name</label></th>
+            <th><label>First Name</label></th>
+            <th><label>Email Address</label></th>
+            <th><label>Phone Number</label></th>
+            <th><label>Organization</label></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ResultIList)
+        {
+            <tr>
+                <td>
+                    <a class="button" asp-page="ModifyMentors" asp-route-intMentorID="@item.MentorID"><span>Modify</span></a>
+                    <a class="button-delete" asp-page="DeleteMentors" asp-route-intMentorID="@item.MentorID" onclick="return confirm('Are you sure you want to delete this mentor? Click OK to delete it. Click Cancel to keep them.')"><span>Delete</span></a>
+                </td>
+                <td><label>@item.LastName</label></td>
+                <td><label>@item.FirstName</label></td>               
+                <td><label>@item.EmailAddress</label></td>
+                <td><label>@item.PhoneNumber</label></td>
+                <td><label>@item.Organization</label></td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,38 @@
+﻿@page
+@model _2024PSMS.Pages.ProjectFiles.ModifyProjectFilesModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Modify Project Files</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+
+<form method="post">
+
+    <table>
+        <tr>
+            <td><label asp-for="Project.Title"></label></td>
+            <td><select asp-for="ProjectFile.ProjectID" asp-items="@Model.ProjectSelectList"><option value="">- Select Project -</option></select></td>
+        </tr>
+        <tr>
+            <td><label asp-for="ProjectFile.ProjectFile1"></label></td>
+            <td><input asp-for="ProjectFile.ProjectFile1" type ="file" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input class="button" asp-page-handler="Modify" type="submit" value="Modify" />
+                <a class="button-delete" asp-page="CancelProjectFiles"><span>Cancel</span></a>
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

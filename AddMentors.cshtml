@@ -1,0 +1,56 @@
+﻿@page
+@model _2024PSMS.Pages.Mentors.AddMentorsModel
+@{
+    ViewData["Title"] = "2024PSMS";
+}
+
+<h1>Add Mentor</h1>
+
+<label>Message:</label>
+<label style="color: @Model.MessageColor">@Model.Message</label>
+
+<form method="post">
+
+    <table>
+        <tr>
+            <td><label asp-for="Mentor.FirstName"></label></td>
+            <td><input asp-for="Mentor.FirstName" /></td>
+            <td><span asp-validation-for="Mentor.FirstName" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Mentor.LastName"></label></td>
+            <td><input asp-for="Mentor.LastName" /></td>
+            <td><span asp-validation-for="Mentor.LastName" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Mentor.EmailAddress"></label></td>
+            <td><input asp-for="Mentor.EmailAddress" /></td>
+            <td><span asp-validation-for="Mentor.EmailAddress" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Mentor.PhoneNumber"></label></td>
+            <td><input asp-for="Mentor.PhoneNumber" /></td>
+            <td><span asp-validation-for="Mentor.PhoneNumber" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Mentor.Organization"></label></td>
+            <td><input asp-for="Mentor.Organization"></input></td>
+            <td><span asp-validation-for="Mentor.Organization" /></td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input class="button" asp-page-handler="Add" type="submit" value="Add" />
+                <a class="button-delete" asp-page="CancelMentors"><span>Cancel</span></a>
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
